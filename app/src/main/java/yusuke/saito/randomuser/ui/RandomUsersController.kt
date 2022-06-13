@@ -1,5 +1,6 @@
 package yusuke.saito.randomuser.ui
 
+import android.view.View
 import com.airbnb.epoxy.EpoxyDataBindingLayouts
 import com.airbnb.epoxy.TypedEpoxyController
 import yusuke.saito.randomuser.R
@@ -17,6 +18,9 @@ class RandomUsersController(
             epoxyViewHolderRandomUser {
                 id(user.phone)
                 phone(user.phone)
+                onClickListener(View.OnClickListener {
+                    this@RandomUsersController.selectListener.onSelected(user)
+                })
             }
         }
     }
