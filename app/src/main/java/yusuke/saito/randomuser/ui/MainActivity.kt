@@ -7,16 +7,15 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 import yusuke.saito.randomuser.R
-import yusuke.saito.randomuser.repository.RandomUserRepository
+import yusuke.saito.randomuser.repository.RandomUserRepositoryImpl
 import yusuke.saito.randomuser.viewmodel.RandomUserViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel = RandomUserViewModel(RandomUserRepository("https://randomuser.me/"))
+    private val viewModel = RandomUserViewModel(RandomUserRepositoryImpl("https://randomuser.me/"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
