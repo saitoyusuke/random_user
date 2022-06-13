@@ -8,13 +8,16 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.google.android.material.progressindicator.LinearProgressIndicator
+import kotlinx.coroutines.Dispatchers
 import yusuke.saito.randomuser.R
 import yusuke.saito.randomuser.repository.RandomUserRepositoryImpl
 import yusuke.saito.randomuser.usecase.GetRandomUsersUseCaseImpl
-import yusuke.saito.randomuser.viewmodel.RandomUserViewModel
+import yusuke.saito.randomuser.viewmodel.RandomUsersViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel = RandomUserViewModel(
+    // ViewModelはHiltで挿入する
+    private val viewModel = RandomUsersViewModel(
+        Dispatchers.IO,
         GetRandomUsersUseCaseImpl(RandomUserRepositoryImpl("https://randomuser.me/"))
     )
 
@@ -33,6 +36,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getResults()
+        viewModel.getUsers()
     }
 }

@@ -4,15 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import yusuke.saito.randomuser.entity.RandomUserEntity
 import yusuke.saito.randomuser.ext.combine
 import yusuke.saito.randomuser.usecase.GetRandomUsersUseCase
 
-class RandomUserViewModel(private val useCase: GetRandomUsersUseCase) : ViewModel() {
-
+class RandomUsersViewModel(
+    private val dispatcher: CoroutineDispatcher,
+    private val useCase: GetRandomUsersUseCase
+) : ViewModel() {
     private val _users = MutableLiveData<List<RandomUserEntity>>(listOf())
     private val _isLoading = MutableLiveData(false)
     val uiModel: LiveData<RandomUsersUiModel> by lazy {
@@ -25,8 +27,8 @@ class RandomUserViewModel(private val useCase: GetRandomUsersUseCase) : ViewMode
         }
     }
 
-    fun getResults() {
-        val job = viewModelScope.launch(context = Dispatchers.IO, start = CoroutineStart.LAZY) {
+    fun getUsers() {
+        val job = viewModelScope.launch(context = dispatcher, start = CoroutineStart.LAZY) {
             _users.postValue(useCase.getRandomUsers(30))
             _isLoading.postValue(false)
         }
