@@ -11,6 +11,6 @@ class GetRandomUsersUseCaseImpl(
         repository.getRandomUsers(size).execute().body()?.results?.toEntities() ?: listOf()
 }
 
-fun RandomUser.toEntity() = RandomUserEntity(gender, phone)
+fun RandomUser.toEntity() = RandomUserEntity(gender, phone, picture.thumbnail)
 fun List<RandomUser>.toEntities() = this.map { it.toEntity() }
 
