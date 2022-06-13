@@ -1,4 +1,4 @@
-package yusuke.saito.randomuser
+package yusuke.saito.randomuser.ui
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
+import yusuke.saito.randomuser.R
+import yusuke.saito.randomuser.repository.RandomUserRepository
+import yusuke.saito.randomuser.viewmodel.RandomUserViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel = RandomUserViewModel(Repository("https://randomuser.me/"))
+    private val viewModel = RandomUserViewModel(RandomUserRepository("https://randomuser.me/"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
