@@ -24,11 +24,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        viewModel.results.observe(this) {
-            findViewById<TextView>(R.id.text_view).text = it
-        }
-        viewModel.isLoading.observe(this) {
-            findViewById<LinearProgressIndicator>(R.id.progress_bar).isVisible = it
+        viewModel.uiModel.observe(this) { uiModel ->
+            findViewById<TextView>(R.id.text_view).text = uiModel.users.toString()
+            findViewById<LinearProgressIndicator>(R.id.progress_bar).isVisible = uiModel.isLoading
         }
         return super.onCreateView(name, context, attrs)
     }
