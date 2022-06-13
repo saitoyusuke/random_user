@@ -8,10 +8,13 @@ import android.view.View
 import android.widget.TextView
 import yusuke.saito.randomuser.R
 import yusuke.saito.randomuser.repository.RandomUserRepositoryImpl
+import yusuke.saito.randomuser.usecase.GetRandomUsersUseCaseImpl
 import yusuke.saito.randomuser.viewmodel.RandomUserViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel = RandomUserViewModel(RandomUserRepositoryImpl("https://randomuser.me/"))
+    private val viewModel = RandomUserViewModel(
+        GetRandomUsersUseCaseImpl(RandomUserRepositoryImpl("https://randomuser.me/"))
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
