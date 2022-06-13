@@ -11,4 +11,3 @@ interface RandomUserRepository {
 
 data class RandomUser(val gender: String, val phone: String)
 data class RandomUsers(val results: List<RandomUser>)
-

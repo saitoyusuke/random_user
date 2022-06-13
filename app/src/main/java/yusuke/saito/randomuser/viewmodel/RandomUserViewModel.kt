@@ -16,7 +16,7 @@ class RandomUserViewModel(private val useCase: GetRandomUsersUseCase) : ViewMode
 
     fun getResults() {
         val job = viewModelScope.launch(context = Dispatchers.IO, start = CoroutineStart.LAZY) {
-            val users = useCase.getRandomUsers(30).results
+            val users = useCase.getRandomUsers(30)
             _results.postValue(users[0].gender + " : " + users[0].phone)
         }
         job.start()
