@@ -13,12 +13,16 @@ class RandomUserViewModel(private val useCase: GetRandomUsersUseCase) : ViewMode
 
     private val _results = MutableLiveData("")
     val results: LiveData<String> = _results
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
 
     fun getResults() {
         val job = viewModelScope.launch(context = Dispatchers.IO, start = CoroutineStart.LAZY) {
             val users = useCase.getRandomUsers(30)
             _results.postValue(users[0].gender + " : " + users[0].phone)
+            _isLoading.postValue(false)
         }
+        _isLoading.postValue(true)
         job.start()
     }
 }
