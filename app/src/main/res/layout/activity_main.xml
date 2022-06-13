@@ -10,8 +10,6 @@
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progress_bar"
         android:indeterminate="true"
-        app:hideAnimationBehavior="outward"
-        app:showAnimationBehavior="inward"
         android:layout_width="match_parent"
         android:layout_height="6dp"
         app:layout_constraintTop_toTopOf="parent"
