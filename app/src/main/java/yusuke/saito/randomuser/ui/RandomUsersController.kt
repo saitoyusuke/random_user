@@ -25,8 +25,9 @@ class RandomUsersController(
     override fun buildModels(users: List<RandomUserEntity>?) {
         users?.forEach { user ->
             epoxyViewHolderRandomUser {
-                id(user.phone)
+                id(user.email)
                 thumbnail(user.thumbnail)
+                email(user.email)
                 gender(user.gender)
                 phone(user.phone)
                 onClickListener(View.OnClickListener {
