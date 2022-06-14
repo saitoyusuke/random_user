@@ -7,8 +7,8 @@ import yusuke.saito.randomuser.repository.RandomUserRepository
 class GetRandomUsersUseCaseImpl(
     private val repository: RandomUserRepository
 ) : GetRandomUsersUseCase {
-    override fun getRandomUsers(size: Int): List<RandomUserEntity> =
-        repository.getRandomUsers(size).execute().body()?.results?.toEntities() ?: listOf()
+    override fun getRandomUsers(page: Int, size: Int): List<RandomUserEntity> =
+        repository.getRandomUsers(page, size).execute().body()?.results?.toEntities() ?: listOf()
 }
 
 fun RandomUser.toEntity() = RandomUserEntity(gender, phone, picture.thumbnail, email)

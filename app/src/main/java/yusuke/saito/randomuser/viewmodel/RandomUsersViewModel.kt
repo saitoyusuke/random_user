@@ -29,7 +29,7 @@ class RandomUsersViewModel(
 
     fun getUsers() {
         val job = viewModelScope.launch(context = dispatcher, start = CoroutineStart.LAZY) {
-            _users.postValue(useCase.getRandomUsers(30))
+            _users.postValue(useCase.getRandomUsers(1, 30))
             _isLoading.postValue(false)
         }
         _isLoading.postValue(true)

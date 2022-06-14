@@ -7,5 +7,5 @@ import yusuke.saito.randomuser.domain.RandomUsers
 
 interface RandomUserRepository {
     @GET("api/")
-    fun getRandomUsers(@Query("results") size: Int): Call<RandomUsers>
+    fun getRandomUsers(@Query("page") page: Int, @Query("results") size: Int): Call<RandomUsers>
 }
